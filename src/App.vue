@@ -7,6 +7,7 @@
     </div>
     <our-services />
     <our-car-park />
+    <why-me></why-me>
   </div>
 </template>
 
@@ -15,13 +16,15 @@ import HeaderMain from "@/components/HeaderMain";
 import AllTypeTransportation from "@/components/AllTypeTransportation";
 import OurServices from "@/components/OurServices";
 import OurCarPark from "@/components/OurCarPark";
+import WhyMe from "@/components/WhyMe";
 
 export default {
   components: {
     HeaderMain,
     AllTypeTransportation,
     OurServices,
-    OurCarPark
+    OurCarPark,
+    WhyMe,
   }
 }
 </script>
@@ -60,6 +63,11 @@ body {
 .align-center {
   display: flex;
   align-items: center;
+}
+
+.justify-center {
+  display: flex;
+  justify-content: center;
 }
 /* FIRST - ALIGN ITEMS, SECONDARY - JUSTIFY CONTENT*/
 .flex-center-between {

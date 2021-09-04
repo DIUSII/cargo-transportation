@@ -1,35 +1,36 @@
 <template>
   <li
-    class="our-services-item flex-start-between"
+    class="my-card flex-center-between"
     :style="{
-      backgroundColor: servicesItem.style && servicesItem.style.background,
-      border: servicesItem.style && servicesItem.style.border,
+      backgroundColor: item.style && item.style.background,
+      border: item.style && item.style.border,
     }">
-    <div class="our-services-item__container">
-      <h3 class="our-services-item__title">{{ servicesItem.title }}</h3>
-      <div v-if="servicesItem.moreDetails" class="our-services-item__more-details align-center">
-        <span class="our-services-item__more-details-text">Подробнее</span>
+    <div class="my-card__container">
+      <h3 class="my-card__title">{{ item.title }}</h3>
+      <div v-if="item.moreDetails" class="my-card__more-details align-center">
+        <span class="my-card__more-details-text">Подробнее</span>
         <img src="@/assets/images/ourServices/downArrow.svg" alt="downArrow">
       </div>
       <div class="flex-center-between">
-        <p class="our-services-item__description" v-if="servicesItem.description">
-          {{ servicesItem.description }}
+        <p class="my-card__description" v-if="item.description">
+          {{ item.description }}
         </p>
-        <my-link>Заказать услугу</my-link>
+        <my-link v-if="item.orderServices">Заказать услугу</my-link>
       </div>
     </div>
     <img
-      v-if="servicesItem.img"
-      :src="require(`@/assets/images/ourServices/item/${servicesItem.img}.svg`)"
-      :alt="servicesItem.img"
+      v-if="item.img"
+      :src="require(`@/assets/images/${item.img}.svg`)"
+      :alt="item.img"
     >
   </li>
 </template>
 
 <script>
   export default {
+    name: 'MyCard',
     props: {
-      servicesItem: {
+      item: {
         id: Number,
         title: String,
         img: String,
@@ -38,6 +39,10 @@
           default: true,
         },
         description: {
+          type: Boolean,
+          default: true,
+        },
+        orderServices: {
           type: Boolean,
           default: true,
         },
@@ -57,22 +62,23 @@
 </script>
 
 <style scoped>
-  .our-services-item {
+  .my-card {
     background: #f2f2f2;
     border-radius: 17px;
 
     width: 100%;
     max-width: 630px;
+    min-height: 257px;
 
     margin-bottom: 20px;
     padding: 54px 45px 54px 54px;
   }
 
-  .our-services-item__container {
+  .my-card__container {
     width: 100%;
   }
 
-  .our-services-item__title {
+  .my-card__title {
     font-weight: bold;
     font-size: 20px;
     line-height: 140%;
@@ -83,11 +89,11 @@
     margin-bottom: 25px;
   }
 
-  .our-services-item__more-details {
+  .my-card__more-details {
     margin-bottom: 20px;
   }
 
-  .our-services-item__more-details-text {
+  .my-card__more-details-text {
     font-size: 17px;
     line-height: 21px;
     color: #2e2e2e;
@@ -95,7 +101,7 @@
     margin-right: 10px;
   }
 
-  .our-services-item__description {
+  .my-card__description {
     font-weight: 500;
     font-size: 17px;
     line-height: 140%;

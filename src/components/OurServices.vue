@@ -14,10 +14,10 @@
         </p>
         <my-title :marginBottom="90">Всегда к вашим услугам собственный и наёмный транспорт</my-title>
         <ul class="our-services__list">
-          <our-services-item
+          <my-card
             v-for="servicesItem in servicesList"
             :key="servicesItem.id"
-            :servicesItem="servicesItem"
+            :item="servicesItem"
           />
         </ul>
         <p class="our-services__about-company our-services__about-company_width_847">
@@ -32,59 +32,67 @@
 </template>
 
 <script>
-  import OurServicesItem from "@/components/OurServicesItem";
-
   export default {
     name: "OurServices",
+
     data() {
       return {
-        servicesList: [
+        orderServices: true,
+        moreDetails: true,
+      }
+    },
+    computed: {
+      servicesList() {
+        return ([
           {
             id: 0,
             title: 'Грузоперевозки  по Воронежу и области',
-            moreDetails: true,
-            img: 'car',
+            moreDetails: this.moreDetails,
+            orderServices: this.orderServices,
+            img: 'ourServices/item/car',
           },
           {
             id: 1,
             title: 'Междугородние перевозки от 1 до 20 тонн',
-            moreDetails: true,
-            img: 'map',
+            moreDetails: this.moreDetails,
+            orderServices: this.orderServices,
+            img: 'ourServices/item/map',
           },
           {
             id: 2,
             title: 'Доставка сборных грузов / догрузом / попутным грузом',
-            moreDetails: true,
-            img: 'orders',
+            moreDetails: this.moreDetails,
+            orderServices: this.orderServices,
+            img: 'ourServices/item/orders',
           },
           {
             id: 3,
             title: 'Рефрежираторные, температурные перевозки',
-            moreDetails: true,
-            img: 'thermometer',
+            moreDetails: this.moreDetails,
+            orderServices: this.orderServices,
+            img: 'ourServices/item/thermometer',
           },
           {
             id: 4,
             title: 'Перевозка опасных грузов',
-            moreDetails: true,
-            img: 'house',
+            moreDetails: this.moreDetails,
+            orderServices: this.orderServices,
+            img: 'ourServices/item/house',
           },
           {
             id: 5,
             title: 'Не знаете какой тип перевозок подойдёт именно Вам?',
             moreDetails: false,
+            orderServices: this.orderServices,
             description: 'Заполните форму и лучшие менеджеры ответят на все Ваши вопросы',
             style: {
               background: '#fff',
               border: '2px solid #f2f2f2',
             },
           },
-        ],
-      }
+        ]);
+      },
     },
-    components: {
-      OurServicesItem,
-    }
   }
 </script>
 
